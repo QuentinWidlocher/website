@@ -1,7 +1,11 @@
 ---
 import Main from "$layouts/main.astro";
-import HelloWorld from "$components/hello-world.astro";
+import Hero from "$components/hero.astro";
+import LastProjects from "$components/last-projects.astro";
 ---
 <Main title="Home">
-    <HelloWorld/>
+    <Hero/>
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:mx-10 bg-blueGray-700 pt-2 md:p-10 rounded-t-xl md:rounded-t-3xl">
+        <LastProjects/>
+    </div>
 </Main>

@@ -9,5 +9,10 @@
   "devDependencies": {
     "astro": "^0.20.7",
     "tailwindcss": "^2.2.15"
+  },
+  "dependencies": {
+    "@prismicio/client": "^5.1.0",
+    "iconoir": "^1.0.0",
+    "prismic-dom": "^2.2.6"
   }
 }

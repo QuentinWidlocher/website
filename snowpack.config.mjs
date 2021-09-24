@@ -5,4 +5,9 @@ export default {
     $layouts: './src/layouts',
     $: './src',
   },
+  packageOptions: {
+    external: [
+      '@prismicio/client'
+    ]
+  }
 };

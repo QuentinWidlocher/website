@@ -1,0 +1,18 @@
+---
+import ProjectCard from '$components/project-card.astro'
+import { getApi } from '../data/api'
+import Prismic from '@prismicio/client'
+
+const api = await getApi(null);
+
+let {results} = await api.query(
+    Prismic.Predicates.at('document.type', 'project'),
+    { 
+        orderings : '[document.last_publication_date desc]',
+        pageSize : 3,
+    }
+)
+
+let projects = results.map(r => r.data.project);
+---
+{projects.map(project => (<ProjectCard project={project} />))}  
