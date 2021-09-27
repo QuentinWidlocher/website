@@ -13,6 +13,7 @@
   "dependencies": {
     "@prismicio/client": "^5.1.0",
     "iconoir": "^1.0.0",
-    "prismic-dom": "^2.2.6"
+    "prismic-dom": "^2.2.6",
+    "yarn": "^1.22.11"
   }
 }
