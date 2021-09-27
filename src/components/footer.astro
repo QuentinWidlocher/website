@@ -1,17 +1,20 @@
 ---
+import fs from 'node:fs'
 
 const socials = [
-    { label: 'Telegram', link: 'https://t.me/lazard_channel' },
-    { label: 'Github', link: 'https://github.com/QuentinWidlocher' },
-    { label: 'Twitter', link: 'https://twitter.com/Lazard_' },
+    { label: 'Telegram', link: 'https://t.me/lazard_channel', icon: fs.readFileSync('node_modules/iconoir/icons/telegram.svg').toString() },
+    { label: 'Github', link: 'https://github.com/QuentinWidlocher', icon: fs.readFileSync('node_modules/iconoir/icons/github.svg').toString() },
+    { label: 'Twitter', link: 'https://twitter.com/Lazard_', icon: fs.readFileSync('node_modules/iconoir/icons/twitter.svg').toString() },
 ]
+
 
 ---
 
 <ul class="flex text-white text-lg justify-center">
     {socials.map(social => (
-        <li class="px-5 hover:underline">
-            <a href={social.link}>{social.label}</a>
+        <li class="px-10 flex">
+            <span class="mr-2">{social.icon}</span>
+            <a href={social.link} class="hover:underline">{social.label}</a>
         </li>
     ))}
 </ul>
