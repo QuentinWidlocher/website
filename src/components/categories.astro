@@ -18,7 +18,6 @@ async function getProjectList(category: string) {
         [
             Prismic.Predicates.at('document.type', 'project'),
             Prismic.Predicates.at('my.project.category', category),
-            Prismic.Predicates.at('my.project.visible', true)
         ],
         { 
             orderings : '[my.project.last_worked_on desc]',

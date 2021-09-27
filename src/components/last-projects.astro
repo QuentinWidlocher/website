@@ -6,10 +6,7 @@ import Prismic from '@prismicio/client'
 const api = await getApi();
 
 let {results} = await api.query(
-    [
-        Prismic.Predicates.at('document.type', 'project'),
-        Prismic.Predicates.at('my.project.visible', true)
-    ],
+    Prismic.Predicates.at('document.type', 'project'),
     { 
         orderings : '[my.project.last_worked_on desc]',
         pageSize : 3,
