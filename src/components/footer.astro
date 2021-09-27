@@ -1,0 +1,17 @@
+---
+
+const socials = [
+    { label: 'Telegram', link: 'https://t.me/lazard_channel' },
+    { label: 'Github', link: 'https://github.com/QuentinWidlocher' },
+    { label: 'Twitter', link: 'https://twitter.com/Lazard_' },
+]
+
+---
+
+<ul class="flex text-white text-lg justify-center">
+    {socials.map(social => (
+        <li class="px-5 hover:underline">
+            <a href={social.link}>{social.label}</a>
+        </li>
+    ))}
+</ul>

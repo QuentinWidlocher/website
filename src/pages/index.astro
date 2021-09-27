@@ -3,8 +3,8 @@ import Main from "$layouts/main.astro";
 import Hero from "$components/hero.astro";
 import LastProjects from "$components/last-projects.astro";
 import Categories from "$components/categories.astro";
-
 import Navbar from "$components/navbar.astro";
+import Footer from "$components/footer.astro";
 
 const showNavbar = false;
 ---
@@ -31,7 +31,7 @@ const showNavbar = false;
         </div>
     </section>
 
-    <div class="card rounded-b-none">
-        <Navbar />
+    <div class="card-no-bottom">
+        <Footer />
     </div>
 </Main>
