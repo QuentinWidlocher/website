@@ -1,0 +1,54 @@
+---
+import ProjectList from "$components/project-list.astro";
+import { getApi, mapResponseToObj, Model } from '../data/api'
+import Prismic from '@prismicio/client'
+
+const categories = [
+    { label: 'My web apps', predicate: 'Web app' },
+    { label: 'My games', predicate: 'Game' },
+    { label: 'My mobile apps', predicate: 'Mobile app' },
+    { label: 'My experiments', predicate: 'Experiment' },
+    { label: 'My tools for devs', predicate: 'Tool' },
+]
+
+const api = await getApi();
+
+async function getProjectList(category: string) {
+    return await api.query(
+        [
+            Prismic.Predicates.at('document.type', 'project'),
+            Prismic.Predicates.at('my.project.category', category),
+            Prismic.Predicates.at('my.project.visible', true)
+        ],
+        { 
+            orderings : '[my.project.last_worked_on desc]',
+        }
+    )
+}
+
+let categoriesWithProjects = await categories.reduce(async (list, category) => {
+    let response = await getProjectList(category.predicate)           
+    let projects = response.results.length > 0 ? response.results.map(r => mapResponseToObj(r.data.project, r.tags)) : [];    
+
+    if (projects.length > 0) {
+        return Promise.resolve([
+            ...(await list),
+            { category, projects }
+        ])
+    } else {
+        return await list
+    }
+    
+}, Promise.resolve([] as { category: typeof categories[number], projects: Model[] }[]))
+
+---
+
+{categoriesWithProjects.map(({category, projects}, index) => (
+    <section>
+        {(index > 0) && <div class="my-20"></div>}
+        <h2 class="text-white text-4xl mt-3 mb-5 ml-5">{category.label}</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            <ProjectList projects={projects}/>
+        </div>
+    </section>
+))}

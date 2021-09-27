@@ -2,10 +2,36 @@
 import Main from "$layouts/main.astro";
 import Hero from "$components/hero.astro";
 import LastProjects from "$components/last-projects.astro";
+import Categories from "$components/categories.astro";
+
+import Navbar from "$components/navbar.astro";
+
+const showNavbar = false;
 ---
-<Main title="Home">
+<Main title="Quentin Widlocher">
+    {showNavbar && 
+        (<div class="absolute w-full md:px-10">
+            <div class="bg-blueGray-700 p-5 rounded-b-xl md:rounded-b-3xl">
+                <Navbar />
+            </div>
+        </div>)
+    }
     <Hero/>
-    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 md:mx-10 bg-blueGray-700 pt-2 md:p-10 rounded-t-xl md:rounded-t-3xl">
-        <LastProjects/>
+    <div class="-mt-52 card shadow-2xl">
+        <h1 class="text-white text-4xl mt-3 mb-5 ml-5">My last projects</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            <LastProjects/>
+        </div>
+    </div>
+
+    <section class="my-44">
+        <h2 id="my-work" class="text-blueGray-700 text-6xl pt-12 mb-12 ml-32">My work</h2>
+        <div class="card shadow-2xl">
+            <Categories/>
+        </div>
+    </section>
+
+    <div class="card rounded-b-none">
+        <Navbar />
     </div>
 </Main>

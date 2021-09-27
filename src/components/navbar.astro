@@ -1,0 +1,21 @@
+---
+type NavItem = {
+    displayName: string,
+    link: string,
+}
+
+const navitems: NavItem[] = [
+    { displayName: 'Home', link: '/' }
+]
+---
+<nav class="text-white">
+    <ul class="flex justify-center">
+        {navitems.map(navitem => (
+            <li>
+                <a href={navitem.link} class="rounded-lg px-5 py-2 highlighted-on-hover">
+                    {navitem.displayName}
+                </a>
+            </li>
+        ))}
+    </ul>
+</nav>

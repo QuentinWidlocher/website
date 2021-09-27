@@ -1,0 +1,7 @@
+---
+import ProjectCard from '$components/project-card.astro'
+
+const { projects } = Astro.props
+---
+
+{projects.map(project => (<ProjectCard project={project} />))}  

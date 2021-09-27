@@ -34,29 +34,50 @@ export type Response =
         value: Response[]
       }
     }
-
-export type Model = {
-  [k: string]: string | Model[]
-}
-
-export function mapResponseToObj(res: Response): Model {
-  return Object.keys(res).reduce((obj, key) => {
-    const prop = res[key]
-
-    switch (prop.type) {
-      case 'StructuredText':
-        return { ...obj, [key]: prop.value[0].text }
-      case 'Image':
-        return { ...obj, [key]: prop.value.main.url }
-      case 'Link.web':
-        return { ...obj, [key]: prop.value.url }
-      case 'Group':
-        return {
-          ...obj,
-          [key]: prop.value.map((item) => mapResponseToObj(item)),
-        }
-      default:
-        return obj
+  | {
+      [k: string]: {
+        type: 'Select'
+        value: string
+      }
     }
-  }, {})
+  | {
+      [k: string]: {
+        type: 'Date'
+        value: string
+      }
+    }
+
+export type Model =
+  | {
+      [k: string]: string | Model[]
+    }
+  | { tags: string[] }
+
+export function mapResponseToObj(res: Response, tags: string[] = []): Model {
+  return Object.keys(res).reduce(
+    (obj, key) => {
+      const prop = res[key]
+
+      switch (prop.type) {
+        case 'StructuredText':
+          return { ...obj, [key]: prop.value[0].text }
+        case 'Select':
+          return { ...obj, [key]: prop.value }
+        case 'Date':
+          return { ...obj, [key]: new Date(prop.value) }
+        case 'Image':
+          return { ...obj, [key]: prop.value.main.url }
+        case 'Link.web':
+          return { ...obj, [key]: prop.value.url }
+        case 'Group':
+          return {
+            ...obj,
+            [key]: prop.value.map((item) => mapResponseToObj(item)),
+          }
+        default:
+          return obj
+      }
+    },
+    { tags },
+  )
 }

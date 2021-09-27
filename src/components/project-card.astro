@@ -3,32 +3,37 @@ import Debug from 'astro/debug'
 import ArrowRight from '../components/icons/arrow-right.astro'
 import { mapResponseToObj, Model } from '../data/api'
 
-const { project: response } = Astro.props
-
-let {
+const { project: {
     title,
     description,
+    category,
     github: githubLink,
     tags,
     logo
-} = mapResponseToObj(response)
+} } = Astro.props
 
 const printArray = (arr: string[]) => arr.map((t, i) => `${i > 0 ? ', ' : ''}${t}`)
 
 ---
-<a class="p-5" href={githubLink} target="_blank">
-    <div class="h-full w-full flex flex-col border border-white text-white rounded-xl p-5 hover:text-white hover:bg-gradient-to-tr hover:from-sky-600 hover:to-cyan-500 hover:border-sky-600 hover:shadow-primary-lg">
-        <h3 class="text-sky-200 uppercase text-sm">{printArray(tags.map(t => t.name))}</h3>
+<a class="m-5" href={githubLink} target="_blank">
+    <div disabled={!githubLink} class="h-full w-full flex flex-col border border-white text-white rounded-xl p-5 transition-all highlighted-on-hover">
+        <div class="flex justify-between">
+            <span class="text-lg text-sky-200 capitalize">{category}</span>
+            <span class="text-sky-200 uppercase text-sm">{printArray(tags)}</span>
+        </div>
         <div class="my-12">
             <div class="flex mb-3">
-                {logo ? <img class="w-10 h-10 rounded mr-3 bg-white" src={logo} alt=""/> : null }
+                {logo ? <img class="w-10 h-10 rounded mr-3 bg-white" src={logo} alt="" loading="lazy"/> : null }
                 <h1 class="text-3xl">{title}</h1>
             </div>
-            <h2 class="text-sky-200 text-lg">{description}</h2>
+            <span class="text-sky-200 text-lg">{description}</span>
         </div>
         <div class="flex mt-auto">
-            <strong>See the repository</strong>
-            <ArrowRight/>
+        {!!githubLink &&
+            <Fragment>
+                <strong>See the repository</strong>
+                <ArrowRight/>
+            </Fragment>}
         </div>
     </div>
 </a>
