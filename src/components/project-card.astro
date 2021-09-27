@@ -1,7 +1,7 @@
 ---
-import fs from 'node:fs'
+import {getIcon} from '../data/icons'
 
-const arrowRightIcon = fs.readFileSync('node_modules/iconoir/icons/arrow-right.svg').toString()
+const arrowRightIcon = getIcon('arrow-right');
 
 const { project: {
     title,
@@ -16,7 +16,7 @@ const printArray = (arr: string[]) => arr.map((t, i) => `${i > 0 ? ', ' : ''}${t
 
 ---
 <a class="m-5" href={githubLink} target="_blank">
-    <div disabled={!githubLink} class="h-full w-full flex flex-col border border-white text-white rounded-xl p-5 transition-all highlighted-on-hover hover:border-transparent hover:shadow-primary-lg">
+    <div disabled={!githubLink} class="h-full w-full flex flex-col border border-white text-white rounded-xl p-5 transition-all highlighted-on-hover">
         <div class="flex justify-between">
             <span class="text-lg text-sky-200 capitalize">{category}</span>
             <span class="text-sky-200 uppercase text-sm">{printArray(tags)}</span>

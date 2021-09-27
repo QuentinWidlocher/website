@@ -16,7 +16,7 @@ h6 {
 }
 
 .highlighted-on-hover:not([disabled]) {
-  @apply hover:text-white hover:bg-gradient-to-tr hover:from-sky-600 hover:to-cyan-500;
+  @apply hover:text-white hover:bg-gradient-to-tr hover:from-sky-600 hover:to-cyan-500 hover:border-transparent hover:shadow-primary-lg;
 }
 
 .card {
