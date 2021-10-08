@@ -20,13 +20,13 @@ h6 {
 }
 
 .card {
-  @apply md:mx-10 bg-blueGray-700 p-5 md:p-10 rounded-xl md:rounded-3xl;
+  @apply md:mx-10 bg-blueGray-700 p-3 md:p-10 rounded-xl md:rounded-3xl;
 }
 
 .card-no-bottom {
-  @apply md:mx-10 bg-blueGray-700 p-5 md:p-10 rounded-t-xl md:rounded-t-3xl;
+  @apply md:mx-10 bg-blueGray-700 p-3 md:p-10 rounded-t-xl md:rounded-t-3xl;
 }
 
 .card-no-bottom {
-  @apply md:mx-10 bg-blueGray-700 p-5 md:p-10 rounded-t-xl md:rounded-t-3xl;
+  @apply md:mx-10 bg-blueGray-700 p-3 md:p-10 rounded-t-xl md:rounded-t-3xl;
 }
