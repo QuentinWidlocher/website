@@ -15,7 +15,7 @@ const { project: {
 const printArray = (arr: string[]) => arr.map((t, i) => `${i > 0 ? ', ' : ''}${t}`)
 
 ---
-<a class="m-5" href={githubLink} target="_blank">
+<a class="m-5" href={githubLink} target="_blank" rel="noopener">
     <div disabled={!githubLink} class="h-full w-full flex flex-col border border-white text-white rounded-xl p-5 transition-all highlighted-on-hover">
         <div class="flex justify-between">
             <span class="text-lg text-sky-200 capitalize">{category}</span>
